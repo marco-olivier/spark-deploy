@@ -1,0 +1,13 @@
+"""Logging configuration"""
+import logging
+
+def get_logger(name: str) -> logging.Logger:
+    """Get configured logger"""
+    logger = logging.getLogger(f"spark_deploy.{name}")
+    if not logger.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter(
+            "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
+        ))
+        logger.addHandler(handler)
+    return logger
